@@ -2,39 +2,65 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Definition of the design system. All colors, gradients, fonts, etc should be defined here. 
-All colors MUST be HSL.
-*/
+/* EdTech Design System - Modern Educational Platform */
 
 @layer base {
   :root {
+    /* Core Background & Text */
     --background: 0 0% 100%;
-    --foreground: 222.2 84% 4.9%;
+    --foreground: 215 25% 15%;
 
+    /* Card System */
     --card: 0 0% 100%;
-    --card-foreground: 222.2 84% 4.9%;
+    --card-foreground: 215 25% 15%;
 
+    /* Interactive Elements */
     --popover: 0 0% 100%;
-    --popover-foreground: 222.2 84% 4.9%;
+    --popover-foreground: 215 25% 15%;
 
-    --primary: 222.2 47.4% 11.2%;
-    --primary-foreground: 210 40% 98%;
+    /* Primary Brand - Educational Blue */
+    --primary: 217 91% 60%;
+    --primary-foreground: 0 0% 100%;
+    --primary-hover: 217 91% 55%;
 
-    --secondary: 210 40% 96.1%;
-    --secondary-foreground: 222.2 47.4% 11.2%;
+    /* Secondary - Soft Gray */
+    --secondary: 210 20% 96%;
+    --secondary-foreground: 215 25% 15%;
 
-    --muted: 210 40% 96.1%;
-    --muted-foreground: 215.4 16.3% 46.9%;
+    /* Muted Elements */
+    --muted: 210 20% 96%;
+    --muted-foreground: 215 16% 47%;
 
-    --accent: 210 40% 96.1%;
-    --accent-foreground: 222.2 47.4% 11.2%;
+    /* Accent - Success Green */
+    --accent: 142 71% 45%;
+    --accent-foreground: 0 0% 100%;
 
-    --destructive: 0 84.2% 60.2%;
-    --destructive-foreground: 210 40% 98%;
+    /* Warning & Error */
+    --warning: 38 92% 50%;
+    --warning-foreground: 0 0% 100%;
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 100%;
 
-    --border: 214.3 31.8% 91.4%;
-    --input: 214.3 31.8% 91.4%;
-    --ring: 222.2 84% 4.9%;
+    /* Borders & Inputs */
+    --border: 214 32% 91%;
+    --input: 214 32% 91%;
+    --ring: 217 91% 60%;
+
+    /* Educational Gradient System */
+    --gradient-hero: linear-gradient(135deg, hsl(217 91% 60%), hsl(262 83% 58%));
+    --gradient-card: linear-gradient(145deg, hsl(0 0% 100%), hsl(210 20% 98%));
+    --gradient-accent: linear-gradient(135deg, hsl(142 71% 45%), hsl(158 64% 52%));
+    --gradient-warm: linear-gradient(135deg, hsl(38 92% 50%), hsl(25 95% 53%));
+
+    /* Shadows */
+    --shadow-soft: 0 2px 10px hsl(215 25% 15% / 0.1);
+    --shadow-medium: 0 4px 20px hsl(215 25% 15% / 0.15);
+    --shadow-strong: 0 8px 30px hsl(215 25% 15% / 0.2);
+    --shadow-glow: 0 0 30px hsl(217 91% 60% / 0.3);
+
+    /* Animation Variables */
+    --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    --transition-bounce: all 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
 
     --radius: 0.5rem;
 
@@ -101,5 +127,101 @@ All colors MUST be HSL.
 
   body {
     @apply bg-background text-foreground;
+    font-feature-settings: "rlig" 1, "calt" 1;
+  }
+}
+
+@layer components {
+  /* Hero Button Styles */
+  .btn-hero {
+    @apply bg-gradient-to-r from-primary to-purple-600 text-primary-foreground font-semibold px-8 py-4 rounded-xl;
+    @apply hover:shadow-lg hover:scale-105 transition-all duration-300;
+    @apply shadow-lg;
+  }
+  
+  .btn-secondary {
+    @apply bg-white/10 backdrop-blur-sm border border-white/20 text-white font-semibold px-8 py-4 rounded-xl;
+    @apply hover:bg-white/20 hover:scale-105 transition-all duration-300;
+  }
+
+  /* Card Styles */
+  .card-elevated {
+    @apply bg-card rounded-2xl shadow-[var(--shadow-medium)] hover:shadow-[var(--shadow-strong)];
+    @apply transition-all duration-300 hover:-translate-y-1;
+  }
+  
+  .card-category {
+    @apply bg-gradient-to-br from-white to-gray-50 rounded-xl p-6 border border-gray-200/50;
+    @apply hover:shadow-xl hover:-translate-y-2 transition-all duration-300;
+    @apply cursor-pointer group;
+  }
+
+  /* Course Card */
+  .course-card {
+    @apply bg-white rounded-xl overflow-hidden shadow-md hover:shadow-xl;
+    @apply transition-all duration-300 hover:-translate-y-1 cursor-pointer;
+  }
+
+  /* Gradient Backgrounds */
+  .bg-hero {
+    background: var(--gradient-hero);
+  }
+  
+  .bg-accent-gradient {
+    background: var(--gradient-accent);
+  }
+  
+  .bg-warm-gradient {
+    background: var(--gradient-warm);
+  }
+
+  /* Text Gradients */
+  .text-gradient {
+    @apply bg-gradient-to-r from-primary to-purple-600 bg-clip-text text-transparent;
+  }
+  
+  .text-accent-gradient {
+    @apply bg-gradient-to-r from-accent to-green-500 bg-clip-text text-transparent;
+  }
+
+  /* Animations */
+  .float {
+    animation: float 3s ease-in-out infinite;
+  }
+  
+  .fade-in-up {
+    @apply opacity-0 translate-y-8;
+    animation: fadeInUp 0.6s ease-out forwards;
+  }
+
+  /* Stats Counter */
+  .stats-bar {
+    @apply bg-white/95 backdrop-blur-sm rounded-2xl shadow-lg border border-white/20;
+    @apply px-8 py-4 flex items-center justify-between;
+  }
+}
+
+@layer utilities {
+  /* Custom scrollbar */
+  .scrollbar-hidden {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+  
+  .scrollbar-hidden::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+/* Keyframes */
+@keyframes float {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-10px); }
+}
+
+@keyframes fadeInUp {
+  to {
+    opacity: 1;
+    transform: translateY(0);
   }
 }
